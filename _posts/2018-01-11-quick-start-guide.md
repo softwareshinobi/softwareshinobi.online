@@ -8,6 +8,10 @@ featured: true
 hidden: true
 ---
 
+
+
+```yaml
+
 services:
   ollama:
     image: ollama/ollama:latest
@@ -32,7 +36,7 @@ services:
     depends_on:
       - ollama
 
-
+```
 
 
 
