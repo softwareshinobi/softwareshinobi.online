@@ -13,13 +13,24 @@ services:
     image: ollama/ollama:latest
     container_name: ollama
     restart: unless-stopped
-    ports:
-      - "11434:11434"
     volumes:
-      - ollama:/root/.ollama
+      - ./ollama/ollama:/root/.ollama
+    environment:
+      - OLLAMA_KEEP_ALIVE=24h
 
-volumes:
-  ollama:
+  ollama-webui:
+    image: ghcr.io/open-webui/open-webui:main
+    container_name: ollama-webui
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./ollama/ollama-webui:/app/backend/data
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - WEBUI_AUTH=False
+    depends_on:
+      - ollama
 
 
 
