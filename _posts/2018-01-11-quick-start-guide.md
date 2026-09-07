@@ -41,3 +41,37 @@ services:
 
 
 docker exec -it ollama ollama pull llama3.2
+
+
+
+
+#####
+
+```bash
+docker exec -it ollama ollama pull qwen3:0.6b
+```
+
+Run it interactively:
+
+```bash
+docker exec -it ollama ollama run qwen3:0.6b
+```
+
+List installed models:
+
+```bash
+docker exec -it ollama ollama list
+```
+
+Exit the interactive chat:
+
+```text
+/bye
+```
+
+And if you want to delete the heavier Llama model afterward:
+
+```bash
+docker exec -it ollama ollama rm llama3.2
+```
+
