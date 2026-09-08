@@ -1,23 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
+    <link rel="icon" href="{{ site.baseurl }}/assets/images/logo.png">
 
-<title>{{ page.title }} | {{site.name}}</title>
+    <title>{{ page.title }} | {{ site.name }}</title>
 
-{% seo %}
+    {% seo %}
 
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <!-- Google Fonts for Developer & Tech Aesthetic -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootswatch Solar Theme (Bootstrap 5.3) -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootswatch@5.3.3/dist/solar/bootstrap.min.css">
     
-<link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
+    <!-- FontAwesome 6 Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-<link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
+    <!-- Optional Theme Specific CSS Files -->
+    <link href="{{ site.baseurl }}/assets/css/screen.css" rel="stylesheet">
+    <link href="{{ site.baseurl }}/assets/css/main.css" rel="stylesheet">
 
-<script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/jquery.min.js"></script>
 
+    <!-- ========================================================================= -->
+    <!-- START: CUSTOM SOLAR OVERRIDES & EXTENSIONS                                 -->
+    <!-- (Extract this block to assets/css/solar-custom.css if desired)             -->
+    <!-- ========================================================================= -->
+    <style id="solar-custom-overrides">
+        :root {
+            --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+            --font-code: 'Fira Code', monospace;
+            --solar-accent-gold: #b58900;
+            --solar-accent-cyan: #2aa198;
+            --solar-accent-blue: #268bd2;
+            --solar-bg-dark: #002b36;
+            --solar-bg-card: #073642;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--solar-bg-dark);
+            color: #839496;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .code-font {
+            font-family: var(--font-code);
+        }
+
+        /* Card Enhancements */
+        .card-solar {
+            background-color: var(--solar-bg-card);
+            border: 1px solid rgba(147, 161, 161, 0.15);
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .card-solar:hover {
+            transform: translateY(-4px);
+            border-color: var(--solar-accent-cyan);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-top-left-radius: calc(0.375rem - 1px);
+            border-top-right-radius: calc(0.375rem - 1px);
+            max-height: 220px;
+        }
+
+        .card-img-wrapper img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: brightness(0.9) contrast(1.05);
+        }
+
+        .card-solar:hover .card-img-wrapper img {
+            transform: scale(1.05);
+            filter: brightness(1);
+        }
+
+        /* Hero & Section Banner */
+        .hero-banner {
+            background: linear-gradient(135deg, #073642 0%, #00212b 100%);
+            border: 1px solid rgba(42, 161, 152, 0.25);
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Avatar styling */
+        .author-avatar {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: 2px solid var(--solar-accent-cyan);
+            object-fit: cover;
+        }
+
+        /* Terminal Prompt Accent */
+        .terminal-prompt {
+            color: var(--solar-accent-gold);
+            font-weight: 600;
+        }
+
+        /* Links hover effect */
+        a.hover-cyan {
+            transition: color 0.2s ease;
+        }
+        a.hover-cyan:hover {
+            color: var(--solar-accent-cyan) !important;
+        }
+
+        /* Custom Scrollbar for Solar aesthetic */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #002b36;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #073642;
+            border-radius: 4px;
+            border: 1px solid #586e75;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #2aa198;
+        }
+    </style>
+    <!-- ========================================================================= -->
+    <!-- END: CUSTOM SOLAR OVERRIDES                                                -->
+    <!-- ========================================================================= -->
 </head>
 
 {% if jekyll.environment == 'production' %}
@@ -33,176 +154,183 @@ ga('send', 'pageview');
 {% endif %}
 
 {% capture layout %}{% if page.layout %}layout-{{ page.layout }}{% endif %}{% endcapture %}
-<body class="{{layout}}">
-	<!-- defer loading of font and font awesome -->
-	<noscript id="deferred-styles">
-		<link href="https://fonts.googleapis.com/css?family=Righteous%7CMerriweather:300,300i,400,400i,700,700i" rel="stylesheet">
-		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
-	</noscript>
+<body class="{{layout}} d-flex flex-column min-vh-100">
 
-
-<!-- Begin Menu Navigation
-================================================== -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top mediumnavigation nav-down">
-
-    <div class="container pr-0">
-
-    <!-- Begin Logo -->
-    <a class="navbar-brand" href="{{ site.baseurl }}/">
-    <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}">
-    </a>
-    <!-- End Logo -->
-
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarMediumish" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="collapse navbar-collapse" id="navbarMediumish">
-
-        <!-- Begin Menu -->
-
-            <ul class="navbar-nav ml-auto">
-
-                {% if page.url == "/" %}
-                <li class="nav-item active">
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top border-bottom border-secondary shadow-sm">
+        <div class="container">
+            <!-- Begin Logo / Brand -->
+            <a class="navbar-brand d-flex align-items-center gap-2 code-font fw-bold text-info" href="{{ site.baseurl }}/">
+                {% if site.logo %}
+                <img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{ site.name }}" height="32" class="rounded">
                 {% else %}
-                <li class="nav-item">
+                <i class="fa-solid fa-terminal text-warning"></i>
+                <span>{{ site.name }}</span>
                 {% endif %}
-                <a class="nav-link" href="{{ site.baseurl }}/index.html">Blog</a>
-                </li>
+            </a>
+            <!-- End Logo / Brand -->
 
-                <li class="nav-item">
-                <a class="nav-link" href="{{ site.baseurl }}/about">About</a>
-                </li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMediumish" aria-controls="navbarMediumish" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-                <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"> Docs</a>
-                </li>
+            <div class="collapse navbar-collapse" id="navbarMediumish">
+                <!-- Begin Menu Links -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0 ms-lg-3">
+                    {% if page.url == "/" %}
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{{ site.baseurl }}/index.html"><i class="fa-solid fa-book-open me-1"></i> Blog</a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ site.baseurl }}/index.html"><i class="fa-solid fa-book-open me-1"></i> Blog</a>
+                    </li>
+                    {% endif %}
 
-                <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mediumish-wordpress/"><i class="fab fa-wordpress-simple"></i> WP Version</a>
-                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ site.baseurl }}/about"><i class="fa-solid fa-user me-1"></i> About</a>
+                    </li>
 
-                <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mediumish-ghost/"><i class="fab fa-snapchat-ghost"></i> Ghost Version</a>
-                </li>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="https://bootstrapstarter.com/bootstrap-templates/template-mediumish-bootstrap-jekyll/"><i class="fa-solid fa-file-code me-1"></i> Docs</a>
+                    </li>
 
-                <li class="nav-item">
-                <a target="_blank" class="nav-link" href="https://github.com/wowthemesnet/mediumish-theme-jekyll"><i class="fab fa-github"></i> Fork on Github</a>
-                </li>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mediumish-wordpress/"><i class="fa-brands fa-wordpress me-1"></i> WP Version</a>
+                    </li>
 
-                {% include search-lunr.html %}
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="https://www.wowthemes.net/themes/mediumish-ghost/"><i class="fa-solid fa-ghost me-1"></i> Ghost Version</a>
+                    </li>
 
-            </ul>
+                    <li class="nav-item">
+                        <a target="_blank" class="nav-link" href="https://github.com/wowthemesnet/mediumish-theme-jekyll"><i class="fa-brands fa-github me-1"></i> Fork on Github</a>
+                    </li>
+                </ul>
+                <!-- End Menu Links -->
 
-        <!-- End Menu -->
-
-    </div>
-
-    </div>
-</nav>
-<!-- End Navigation
-================================================== -->
-
-<div class="site-content">
-
-<div class="container">
-
-<!-- Site Title
-================================================== -->
-<div class="mainheading">
-    <h1 class="sitetitle">{{ site.name }}</h1>
-    <p class="lead">
-        {{ site.description }}
-    </p>
-</div>
-
-<!-- Content
-================================================== -->
-<div class="main-content">
-    {{ content }}
-</div>
-
-{% if site.mailchimp-list %}
-<!-- Bottom Alert Bar
-================================================== -->
-<div class="alertbar">
-	<div class="container text-center">
-		<span><img src="{{ site.baseurl }}/{{ site.logo }}" alt="{{site.title}}"> &nbsp; Never miss a <b>story</b> from us, subscribe to our newsletter</span>
-        <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
-            <div class="mc-field-group">
-            <input type="email" placeholder="Email" name="EMAIL" class="required email" id="mce-EMAIL" autocomplete="on" required>
-            <input type="submit" value="Subscribe" name="subscribe" class="heart">
-            </div>
-        </form>
-	</div>
-</div>
-{% endif %}
-    
-</div>
-
-<!-- Categories Jumbotron
-================================================== -->
-<div class="jumbotron fortags">
-	<div class="d-md-flex h-100">
-		<div class="col-md-4 transpdark align-self-center text-center h-100">
-            <div class="d-md-flex align-items-center justify-content-center h-100">
-                <h2 class="d-md-block align-self-center py-1 font-weight-light">Explore <span class="d-none d-md-inline">→</span></h2>
-            </div>
-		</div>
-		<div class="col-md-8 p-5 align-self-center text-center">
-            {% assign categories_list = site.categories %}
-            {% if categories_list.first[0] == null %}
-                {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">{{ category | camelcase }} ({{ site.tags[category].size }})</a>
-                {% endfor %}
-            {% else %}
-                {% for category in categories_list %}
-                    <a class="mt-1 mb-1" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">{{ category[0] | camelcase }} ({{ category[1].size }})</a>
-                {% endfor %}
-            {% endif %}
-            {% assign categories_list = nil %}
-		</div>
-	</div>
-</div>
-
-<!-- Begin Footer
-================================================== -->
-<footer class="footer">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-sm-6 text-center text-lg-left">
-                Copyright © {{ site.time | date: "%Y" }} {{ site.name }} 
-            </div>
-            <div class="col-md-6 col-sm-6 text-center text-lg-right">    
-                <a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/">Mediumish Jekyll Theme</a> by WowThemes.net
+                <!-- Search Integration -->
+                <div class="d-flex my-2 my-lg-0">
+                    {% include search-lunr.html %}
+                </div>
             </div>
         </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <div class="site-content flex-grow-1">
+        <main class="container my-5">
+
+            <!-- Site Header / Hero Section -->
+            <div class="hero-banner p-4 p-md-5 mb-5 text-light">
+                <div class="row align-items-center">
+                    <div class="col-lg-8">
+                        <div class="d-inline-flex align-items-center gap-2 bg-dark px-3 py-1 rounded-pill mb-3 border border-secondary code-font text-info small">
+                            <span class="terminal-prompt">$</span> cat /etc/motd
+                        </div>
+                        <h1 class="display-5 fw-bold text-warning code-font mb-2">{{ site.name }}</h1>
+                        <p class="lead text-secondary mb-0">{{ site.description }}</p>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block text-center">
+                        <i class="fa-solid fa-server display-1 text-info opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page / Post Body Injection -->
+            <div class="main-content">
+                {{ content }}
+            </div>
+
+            {% if site.mailchimp-list %}
+            <!-- Newsletter Alert Bar -->
+            <section id="newsletter" class="hero-banner p-4 p-md-5 my-5 text-center">
+                <div class="mx-auto" style="max-width: 650px;">
+                    <div class="mb-3">
+                        <i class="fa-solid fa-paper-plane display-6 text-warning"></i>
+                    </div>
+                    <h3 class="h3 text-light code-font mb-2">Subscribe to {{ site.name }}</h3>
+                    <p class="text-secondary mb-4">Never miss a story from us. Get the latest articles and tutorials delivered straight to your inbox.</p>
+
+                    <form action="{{site.mailchimp-list}}" method="post" name="mc-embedded-subscribe-form" class="wj-contact-form validate" target="_blank" novalidate>
+                        <div class="input-group input-group-lg mb-2">
+                            <span class="input-group-text bg-dark border-secondary text-muted"><i class="fa-solid fa-envelope"></i></span>
+                            <input type="email" placeholder="Email address..." name="EMAIL" class="form-control bg-dark text-light border-secondary code-font required email" id="mce-EMAIL" autocomplete="on" required>
+                            <button class="btn btn-warning text-dark fw-bold px-4" type="submit" name="subscribe">Subscribe</button>
+                        </div>
+                        <div class="form-text text-muted extra-small">No spam. Unsubscribe anytime.</div>
+                    </form>
+                </div>
+            </section>
+            {% endif %}
+
+            <!-- Categories Jumbotron -->
+            <section id="categories" class="card card-solar p-4 p-md-5 my-5">
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center text-md-start mb-3 mb-md-0 border-end-md border-secondary pe-md-4">
+                        <h3 class="h4 text-warning code-font mb-1"><i class="fa-solid fa-folder-tree me-2"></i>Explore Topics</h3>
+                        <p class="text-secondary small mb-0">Browse articles filtered by tech stack and category tags.</p>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="d-flex flex-wrap gap-2 justify-content-center justify-content-md-start">
+                            {% assign categories_list = site.categories %}
+                            {% if categories_list.first[0] == null %}
+                                {% for category in categories_list %}
+                                    <a class="btn btn-outline-info btn-sm code-font" href="{{site.baseurl}}/categories#{{ category | url_escape | strip | replace: ' ', '-' }}">
+                                        <i class="fa-solid fa-tag me-1"></i>{{ category | camelcase }} <span class="badge bg-info text-dark ms-1">{{ site.tags[category].size }}</span>
+                                    </a>
+                                {% endfor %}
+                            {% else %}
+                                {% for category in categories_list %}
+                                    <a class="btn btn-outline-info btn-sm code-font" href="{{site.baseurl}}/categories#{{ category[0] | url_escape | strip | replace: ' ', '-' }}">
+                                        <i class="fa-solid fa-tag me-1"></i>{{ category[0] | camelcase }} <span class="badge bg-info text-dark ms-1">{{ category[1].size }}</span>
+                                    </a>
+                                {% endfor %}
+                            {% endif %}
+                            {% assign categories_list = nil %}
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
     </div>
-</footer>
-<!-- End Footer
-================================================== -->
 
-</div> <!-- /.site-content -->
+    <!-- Footer -->
+    <footer class="bg-dark border-top border-secondary py-4 mt-auto">
+        <div class="container">
+            <div class="row align-items-center gy-3">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="mb-0 text-secondary code-font small">
+                        Copyright &copy; {{ site.time | date: "%Y" }} <span class="text-info">{{ site.name }}</span>. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <ul class="list-inline mb-0 small code-font">
+                        <li class="list-inline-item me-3"><a href="#" class="text-secondary text-decoration-none hover-cyan"><i class="fa-solid fa-angle-up me-1"></i> Back to Top</a></li>
+                        <li class="list-inline-item me-3"><a href="{{ site.baseurl }}/about" class="text-secondary text-decoration-none hover-cyan">About</a></li>
+                        <li class="list-inline-item"><a target="_blank" href="https://www.wowthemes.net/mediumish-free-jekyll-template/" class="text-warning text-decoration-none">Mediumish Jekyll Theme</a> by WowThemes.net</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </footer>
 
-<!-- Scripts
-================================================== -->
+    <!-- Scripts -->
+    <!-- Bootstrap 5.3 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+    <script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>
 
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+    {% if site.lazyimages == "enabled" %}
+    <script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
+    {% endif %}
 
-<script src="{{ site.baseurl }}/assets/js/mediumish.js"></script>
+    <script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script>
 
-{% if site.lazyimages == "enabled" %}
-<script src="{{ site.baseurl }}/assets/js/lazyload.js"></script>
-{% endif %}
-
-<script src="{{ site.baseurl }}/assets/js/ie10-viewport-bug-workaround.js"></script> 
-
-{% if page.layout == 'post' %}
-<script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
-{% endif %}
+    {% if page.layout == 'post' %}
+    <script id="dsq-count-scr" src="//{{site.disqus}}.disqus.com/count.js"></script>
+    {% endif %}
 
 </body>
 </html>
