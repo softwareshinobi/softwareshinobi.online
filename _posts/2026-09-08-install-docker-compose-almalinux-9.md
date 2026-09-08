@@ -4,7 +4,7 @@ title: "RHEL REVOLUTIONS: Modernizing Enterprise Infrastructure with Official Do
 author: softwareshinobi
 categories: [ Jekyll, tutorial ]
 tags: [ docker, almalinux, devops, linux, containers ]
-image: assets/images/2026-09-08-install-docker-compose-almalinux-9.jpg
+image: assets/images/template.jpeg
 ---
 
 Deploying Docker on enterprise-grade Linux distributions like AlmaLinux 9 requires a slightly different approach than Ubuntu-based environments. Because AlmaLinux ships with Podman as its default container engine and defaults service daemons to an inactive state upon installation, setting up Docker Engine and Docker Compose v2 requires a clean environment prep and specific configuration steps.
