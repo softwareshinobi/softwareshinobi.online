@@ -1,9 +1,29 @@
 ---
 layout: post
-title:  "MIGRATE OR DIE: Why Smart Engineers Are Ditching Unreliable Legacy Distros For Enterprise Grade Tech"
+title: "The Red Hat Exchange Rate: Mapping Ubuntu Habits to AlmaLinux 9"
 author: softwareshinobi
 categories: [ Jekyll, tutorial ]
+tags: [ almalinux, rhel, ubuntu, selinux, linux ]
 image: assets/images/template.jpeg
 ---
 
-The Red Hat Exchange Rate (AlmaLinux 9 vs. Ubuntu)You have been living in Ubuntu land for too long. Here is how your old habits map to Red Hat's ecosystem:apt / apt-get $\rightarrow$ dnfAlmaLinux 9 uses dnf (the successor to yum). The syntax is almost identical: dnf install, dnf update, dnf remove.PPA Repositories $\rightarrow$ Official RPM RepositoriesAlmaLinux does not use PPAs. You add .repo files directly to /etc/yum.repos.d/ using dnf config-manager.systemctl $\rightarrow$ systemctlService management remains unchanged. Both use systemd.AppArmor $\rightarrow$ SELinuxUbuntu relies on AppArmor. AlmaLinux enforces SELinux strictly by default. If your containers hit permission walls on volume mounts, SELinux is usually holding the bag.
+If you have been living in Ubuntu land for a while, jumping back into the Red Hat Enterprise Linux (RHEL) ecosystem for enterprise work can feel like speaking a slightly different dialect. While system core concepts remain similar, your day-to-day commands, package delivery, and default security rules require a mental translation layer.
+
+Here is a straightforward reference guide mapping your standard Ubuntu habits directly to Red Hat's ecosystem via AlmaLinux 9.
+
+### Package Management: `apt` / `apt-get` → `dnf`
+
+AlmaLinux 9 relies on `dnf` as its primary package manager, replacing the older `yum` tool. The operational syntax maps directly to what you are used to executing in Debian-based systems:
+
+*   **Installing Packages:** `sudo dnf install <package>`
+*   **System Updates:** `sudo dnf update`
+*   **Removing Packages:** `sudo dnf remove <package>`
+
+### Software Repositories: PPAs → Official RPM Repositories
+
+Debian and Ubuntu setups often rely on Personal Package Archives (PPAs) added via `add-apt-repository`. AlmaLinux does not use PPAs. Instead, package management utilizes explicit configuration files stored under `/etc/yum.repos.d/`. 
+
+To manage external software sources, point your package manager directly to upstream RPM repositories using the native configuration tool:
+
+```bash
+sudo dnf config-manager --add-repo <repository_url>
