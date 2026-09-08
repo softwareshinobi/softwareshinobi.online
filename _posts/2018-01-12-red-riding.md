@@ -1,16 +1,72 @@
 ---
 layout: post
-title:  "Red Riding Hood"
-author: sal
+title: "RHEL REVOLUTIONS: Modernizing Enterprise Infrastructure with Official Docker Binaries"
+author: softwareshinobi
 categories: [ Jekyll, tutorial ]
-image: assets/images/1.jpg
+tags: [ docker, almalinux, devops, linux, containers ]
+image: assets/images/2026-09-08-install-docker-compose-almalinux-9.jpg
 ---
-The first mass-produced book to deviate from a rectilinear format, at least in the United States, is thought to be this 1863 edition of Red Riding Hood, cut into the shape of the protagonist herself with the troublesome wolf curled at her feet. Produced by the Boston-based publisher Louis Prang, this is the first in their “Doll Series”, a set of five “die-cut” books, known also as shape books — the other titles being Robinson Crusoe, Goody Two-Shoes (also written by Red Riding Hood author Lydia Very), Cinderella, and King Winter. 
 
-An 1868 Prang catalogue would later claim that such “books in the shape of a regular paper Doll… originated with us”. 
+Deploying Docker on enterprise-grade Linux distributions like AlmaLinux 9 requires a slightly different approach than Ubuntu-based environments. Because AlmaLinux ships with Podman as its default container engine and defaults service daemons to an inactive state upon installation, setting up Docker Engine and Docker Compose v2 requires a clean environment prep and specific configuration steps.
 
-> It would seem the claim could also extend to die cut books in general, as we can’t find anything sooner, but do let us know in the comments if you have further light to shed on this! Such books are, of course, still popular in children’s publishing today, though the die cutting is not now limited to mere outlines, as evidenced in a beautiful 2014 version of the same Little Red Riding Hood story. 
+Here is the complete step-by-step guide to clearing out conflicting software, configuring upstream repositories, installing Docker components, and configuring user permissions.
 
-The die cut has also been employed in the non-juvenile sphere as well, a recent example being Jonathan Safran Foer’s ambitious Tree of Codes. 
+### 1. Clean Up Conflicting Packages
 
-As for this particular rendition of Charles Perrault’s classic tale, the text and design is by Lydia Very (1823-1901), sister of Transcendentalist poet Jones Very. The gruesome ending of the original — which sees Little Red Riding Hood being gobbled up as well as her grandmother — is avoided here, the gore giving way to the less bloody aims of the morality tale, and the lesson that one should not disobey one’s mother.
+AlmaLinux pushes Podman by default. If Podman, Buildah, or older Docker packages are present, remove them to prevent runtime and resource conflicts:
+
+```bash
+sudo dnf remove -y podman buildah docker docker-client docker-client-latest docker-common docker-latest docker-latest-logrotate docker-logrotate docker-engine
+
+```
+
+### 2. Add the Official Docker Repository
+
+Install the `dnf-plugins-core` package to manage your repositories, then point your package manager directly to the upstream Docker Community Edition repository:
+
+```bash
+sudo dnf install -y dnf-plugins-core
+sudo dnf config-manager --add-repo [https://download.docker.com/linux/centos/docker-ce.repo](https://download.docker.com/linux/centos/docker-ce.repo)
+
+```
+
+### 3. Install Docker Engine and Docker Compose
+
+Fetch the core Docker engine binaries alongside the modern Compose v2 plugin directly through `dnf`:
+
+```bash
+sudo dnf install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+```
+
+### 4. Enable and Start the Docker Daemon
+
+Unlike Debian/Ubuntu systems—which automatically launch services upon installation—Red Hat family distributions leave newly installed services disabled. Enable the service to start at boot and initialize it immediately:
+
+```bash
+sudo systemctl enable --now docker
+
+```
+
+### 5. Grant User Privileges (Optional)
+
+To run container commands without prepending `sudo`, add your current user to the `docker` system group and apply the new group settings:
+
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+
+```
+
+### 6. Verify Docker Compose Installation
+
+Confirm that Docker Compose v2 is properly configured and operational:
+
+```bash
+docker compose version
+
+```
+
+```[cite: 2, 3]
+
+```
