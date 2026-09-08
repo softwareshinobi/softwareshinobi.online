@@ -4,7 +4,7 @@ title: "Why You Shouldn't Add SELinux Volume Flags to Every Docker Compose File"
 author: softwareshinobi
 categories: [ Docker, DevOps ]
 tags: [ Docker, SELinux, DevOps, Linux, Containers ]
-image: assets/images/2026-09-08-docker-selinux-mount-flags.jpg
+image: assets/images/template.jpeg
 ---
 
 No. Do not slap `:z` or `:Z` on every volume flag like a careless amateur. Every line in a config file costs time to maintain, and adding parameters without understanding their function is a liability.

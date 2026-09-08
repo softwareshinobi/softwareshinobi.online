@@ -4,7 +4,7 @@ title: "Handling Host Bind Mounts and SELinux Enforcement on Enterprise Linux"
 author: softwareshinobi
 categories: [ Docker, Linux ]
 tags: [ Docker, SELinux, AlmaLinux, Security, DevOps ]
-image: assets/images/2026-09-08-host-bind-mounts-selinux.jpg
+image: assets/images/template.jpeg
 ---
 
 If you stick purely to host relative bind mounts (`/host/path:/container/path`) instead of managed Docker volumes, understand the access controls enforced by Enterprise Linux distributions[cite: 1, 2]. On AlmaLinux 9, SELinux will actively block container read and write operations unless permissions and labels are explicitly handled[cite: 1, 2].

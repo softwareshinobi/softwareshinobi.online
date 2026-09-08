@@ -4,7 +4,7 @@ title: "Ollama Docker Compose"
 author: softwareshinobi
 categories: [ Jekyll, tutorial ]
 tags: [ Docker, Ollama, AI, LLM, Containerization ]
-image: assets/images/2026-09-08-ollama-docker-compose.jpg
+image: assets/images/template.jpeg
 ---
 
 ```yaml
