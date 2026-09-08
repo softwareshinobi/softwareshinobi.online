@@ -1,17 +1,13 @@
 ---
 layout: post
-title:  "ollama Docker compose"
-author: sal
+title: "Ollama Docker Compose"
+author: softwareshinobi
 categories: [ Jekyll, tutorial ]
-image: assets/images/12.jpg
-featured: true
-hidden: true
+tags: [ Docker, Ollama, AI, LLM, Containerization ]
+image: assets/images/2026-09-08-ollama-docker-compose.jpg
 ---
 
-
-
 ```yaml
-
 services:
   ollama:
     image: ollama/ollama:latest
@@ -38,40 +34,46 @@ services:
 
 ```
 
+### Pulling and Managing Models
 
+Pull the Llama 3.2 model:
 
+```bash
 docker exec -it ollama ollama pull llama3.2
 
+```
 
-
-
-#####
+Pull the Qwen 3 model:
 
 ```bash
 docker exec -it ollama ollama pull qwen3:0.6b
+
 ```
 
-Run it interactively:
+Run the model interactively:
 
 ```bash
 docker exec -it ollama ollama run qwen3:0.6b
+
 ```
 
 List installed models:
 
 ```bash
 docker exec -it ollama ollama list
+
 ```
 
 Exit the interactive chat:
 
 ```text
 /bye
+
 ```
 
-And if you want to delete the heavier Llama model afterward:
+Delete heavier models to free up resources:
 
 ```bash
 docker exec -it ollama ollama rm llama3.2
-```
 
+```
