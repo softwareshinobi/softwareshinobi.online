@@ -27,3 +27,27 @@ To manage external software sources, point your package manager directly to upst
 
 ```bash
 sudo dnf config-manager --add-repo <repository_url>
+
+```
+
+### Init and Service Management: `systemctl` → `systemctl`
+
+Process control is the most seamless transition across both ecosystems. Service management remains completely unchanged—both distributions implement `systemd` natively.
+
+```bash
+sudo systemctl status <service_name>
+sudo systemctl enable --now <service_name>
+
+```
+
+*(Note: Unlike Ubuntu, which automatically launches services immediately upon package installation, Red Hat family distributions leave newly installed daemons inactive by default until explicitly enabled.)*
+
+### Mandatory Access Control: AppArmor → SELinux
+
+While Ubuntu utilizes AppArmor for security containment, AlmaLinux enforces SELinux strictly out of the box.
+
+When running containerized workloads, localized permission denials on volume mounts or unexpected file lockouts are frequently caused by SELinux context rules holding the access boundary. Managing container storage volumes or system services requires accounting for SELinux security contexts rather than AppArmor profiles.
+
+```
+
+```
