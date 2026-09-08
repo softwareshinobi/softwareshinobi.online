@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "MIGRATE OR DIE: Why Smart Engineers Are Ditching Unreliable Legacy Distros For Enterprise Grade Tech"
-author: sal
+author: softwareshinobi
 categories: [ Jekyll, tutorial ]
 image: assets/images/template.jpeg
 ---
