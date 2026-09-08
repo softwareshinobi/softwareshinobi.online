@@ -80,13 +80,3 @@ List all files contained within an archive before extraction using the `-l` flag
 unzip -l archive_name.zip
 
 ```
-
----
-
-### File Name
-
-``
-
-* **DevOps Workflows Standardize Recursive Archiving Routines Across Server Fleets**
-
-* **Enterprise Infrastructure Operations Re-Evaluate Storage Footprint Management**
