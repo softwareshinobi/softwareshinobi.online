@@ -9,3 +9,5 @@ toc: true
 ---
 
 https://app.ytdown.to/en38/
+
+https://youtubetotranscript.com/transcript?v=hV2dXIkC3hU#google_vignette
